@@ -31,7 +31,7 @@ Key features:
   flaws, including blind injection vectors.
 
 %prep
-%setup -q -n %{name}-%{version}%{su%{subver}ver}
+%setup -q -n %{name}-%{version}%{subver}
 
 %{__sed} -i -e 's,-O3,$(OPTCFLAGS),' Makefile
 %{__sed} -i -e 's,-L/usr/local/lib/ -L/opt/local/lib,$(OPTLDFLAGS),' Makefile
