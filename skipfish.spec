@@ -1,5 +1,5 @@
 %define		subver	b
-%define		rel		0.1
+%define		rel		1
 Summary:	Web application security scanner
 Name:		skipfish
 Version:	1.70
@@ -31,7 +31,7 @@ Key features:
   flaws, including blind injection vectors.
 
 %prep
-%setup -n %{name}-%{version}%{subver}
+%setup -q -n %{name}-%{version}%{su%{subver}ver}
 
 %{__sed} -i -e 's,-O3,$(OPTCFLAGS),' Makefile
 %{__sed} -i -e 's,-L/usr/local/lib/ -L/opt/local/lib,$(OPTLDFLAGS),' Makefile
