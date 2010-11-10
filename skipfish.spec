@@ -2,12 +2,12 @@
 %define		rel		0.1
 Summary:	Web application security scanner
 Name:		skipfish
-Version:	1.13
+Version:	1.70
 Release:	0.%{subver}.%{rel}
 License:	Apache v2.0
 Group:		Applications/Networking
 Source0:	http://skipfish.googlecode.com/files/%{name}-%{version}%{subver}.tgz
-# Source0-md5:	e40603953eb6ae3bd9aef3905d6a0335
+# Source0-md5:	94c946e51160e7ee24a0e2f2cbe599a4
 URL:		http://code.google.com/p/skipfish/
 BuildRequires:	libidn-devel
 BuildRequires:	openssl-devel
@@ -31,9 +31,7 @@ Key features:
   flaws, including blind injection vectors.
 
 %prep
-%setup -qc
-mv %{name}/* .
-rmdir %{name}
+%setup -n %{name}-%{version}%{subver}
 
 %{__sed} -i -e 's,-O3,$(OPTCFLAGS),' Makefile
 %{__sed} -i -e 's,-L/usr/local/lib/ -L/opt/local/lib,$(OPTLDFLAGS),' Makefile
