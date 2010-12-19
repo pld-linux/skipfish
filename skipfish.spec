@@ -2,12 +2,12 @@
 %define		rel		1
 Summary:	Web application security scanner
 Name:		skipfish
-Version:	1.70
+Version:	1.84
 Release:	0.%{subver}.%{rel}
 License:	Apache v2.0
 Group:		Applications/Networking
 Source0:	http://skipfish.googlecode.com/files/%{name}-%{version}%{subver}.tgz
-# Source0-md5:	94c946e51160e7ee24a0e2f2cbe599a4
+# Source0-md5:	1d29ada290110a2b93d576f1fb9b1213
 URL:		http://code.google.com/p/skipfish/
 BuildRequires:	libidn-devel
 BuildRequires:	openssl-devel
@@ -39,7 +39,7 @@ Key features:
 %build
 %{__make} \
 	CC="%{__cc}" \
-	OPTCFLAGS="%{rpmcflags}" \
+	OPTCFLAGS="%{rpmcflags} %{rpmcppflags}" \
 	OPTLDFLAGS="%{rpmldflags}"
 
 %install
