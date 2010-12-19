@@ -48,7 +48,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1}
 
 install -p %{name} $RPM_BUILD_ROOT%{_bindir}
 cp -ar %{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
-cp -ar dictionaries $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -ar assets dictionaries $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
