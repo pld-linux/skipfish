@@ -35,6 +35,7 @@ Key features:
 
 %{__sed} -i -e 's,-O3,$(OPTCFLAGS),' Makefile
 %{__sed} -i -e 's,-L/usr/local/lib/ -L/opt/local/lib,$(OPTLDFLAGS),' Makefile
+%{__sed} -i -e 's,"assets","%{_datadir}/%{name}/assets",' config.h
 
 %build
 %{__make} \
