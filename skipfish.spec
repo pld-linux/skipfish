@@ -2,15 +2,16 @@
 %define		rel		1
 Summary:	Web application security scanner
 Name:		skipfish
-Version:	2.07
+Version:	2.08
 Release:	0.%{subver}.%{rel}
 License:	Apache v2.0
 Group:		Applications/Networking
 Source0:	http://skipfish.googlecode.com/files/%{name}-%{version}%{subver}.tgz
-# Source0-md5:	91ee5616b22366745e8b6ba00c3a29e1
+# Source0-md5:	fb928f803c6228ab8ae46ccdf3ce65f0
 URL:		http://code.google.com/p/skipfish/
 BuildRequires:	libidn-devel
 BuildRequires:	openssl-devel
+BuildRequires:	pcre-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -35,7 +36,7 @@ Key features:
 
 %{__sed} -i -e 's,-O3,$(OPTCFLAGS),' Makefile
 %{__sed} -i -e 's,-L/usr/local/lib/ -L/opt/local/lib,$(OPTLDFLAGS),' Makefile
-%{__sed} -i -e 's,"assets","%{_datadir}/%{name}/assets",' config.h
+%{__sed} -i -e 's,"assets","%{_datadir}/%{name}/assets",' src/config.h
 
 %build
 %{__make} \
@@ -48,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1}
 
 install -p %{name} $RPM_BUILD_ROOT%{_bindir}
-cp -ar %{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -ar doc/%{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 cp -ar assets dictionaries $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %clean
@@ -56,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README
+%doc ChangeLog README doc/*.txt
 %attr(755,root,root) %{_bindir}/skipfish
 %{_datadir}/%{name}
 %{_mandir}/man1/%{name}.1*
