@@ -1,5 +1,5 @@
 %define		subver	b
-%define		rel		1
+%define		rel	2
 Summary:	Web application security scanner
 Name:		skipfish
 Version:	2.08
@@ -37,6 +37,8 @@ Key features:
 %{__sed} -i -e 's,-O3,$(OPTCFLAGS),' Makefile
 %{__sed} -i -e 's,-L/usr/local/lib/ -L/opt/local/lib,$(OPTLDFLAGS),' Makefile
 %{__sed} -i -e 's,"assets","%{_datadir}/%{name}/assets",' src/config.h
+%{__sed} -i -e 's,"signatures/,"%{_sysconfdir}/%{name}/,' src/config.h
+%{__sed} -i -e 's,signatures/,%{_datadir}/%{name}/signatures/,' signatures/signatures.conf
 
 %build
 %{__make} \
@@ -46,11 +48,13 @@ Key features:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{_datadir}/%{name}/{,signatures},%{_mandir}/man1}
 
 install -p %{name} $RPM_BUILD_ROOT%{_bindir}
-cp -ar doc/%{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -a doc/%{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -a signatures/signatures.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 cp -ar assets dictionaries $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -ar signatures/*.sigs $RPM_BUILD_ROOT%{_datadir}/%{name}/signatures
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -59,5 +63,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README doc/*.txt
 %attr(755,root,root) %{_bindir}/skipfish
-%{_datadir}/%{name}
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/signatures.conf
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/assets
+%{_datadir}/%{name}/dictionaries
+%{_datadir}/%{name}/signatures
 %{_mandir}/man1/%{name}.1*
