@@ -2,12 +2,12 @@
 %define		rel	2
 Summary:	Web application security scanner
 Name:		skipfish
-Version:	2.08
+Version:	2.09
 Release:	0.%{subver}.%{rel}
 License:	Apache v2.0
 Group:		Applications/Networking
 Source0:	http://skipfish.googlecode.com/files/%{name}-%{version}%{subver}.tgz
-# Source0-md5:	fb928f803c6228ab8ae46ccdf3ce65f0
+# Source0-md5:	9fb6e388a2fa462e84496d3a4c3c198e
 URL:		http://code.google.com/p/skipfish/
 BuildRequires:	libidn-devel
 BuildRequires:	openssl-devel
