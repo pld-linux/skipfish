@@ -1,13 +1,13 @@
 %define		subver	b
-%define		rel	2
+%define		rel	1
 Summary:	Web application security scanner
 Name:		skipfish
-Version:	2.09
+Version:	2.10
 Release:	0.%{subver}.%{rel}
 License:	Apache v2.0
 Group:		Applications/Networking
 Source0:	http://skipfish.googlecode.com/files/%{name}-%{version}%{subver}.tgz
-# Source0-md5:	9fb6e388a2fa462e84496d3a4c3c198e
+# Source0-md5:	8edf6092f3d1835cb4a381b7a723db8a
 URL:		http://code.google.com/p/skipfish/
 BuildRequires:	libidn-devel
 BuildRequires:	openssl-devel
@@ -61,7 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README doc/*.txt
+%doc ChangeLog README config/example.conf doc/*.txt
 %attr(755,root,root) %{_bindir}/skipfish
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/signatures.conf
