@@ -1,5 +1,5 @@
 %define		subver	b
-%define		rel	1
+%define		rel	2
 Summary:	Web application security scanner
 Name:		skipfish
 Version:	2.10
